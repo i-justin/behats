@@ -1,0 +1,86 @@
+<template name="game">
+  {{#if needs_game}}
+    {{>need_game}}
+  {{else}}
+      {{#if getting_started }}{{>show_code}}
+      {{/if}}
+  {{/if}}
+</template>
+<template name="show_code">
+  <h3>  Your Game Code is: <strong>{{game_code}}</strong></h3>(Share this with those who you want to join you.)
+</template>
+<template name="need_game">
+  <div class="text-center" style="padding:50px 0">
+	<div class="logo">BEHATS</div>
+	<!-- Main Form -->
+	<div class="login-form-1">
+		<form id="login-form" class="text-left">
+			<div class="login-form-main-message"></div>
+			<div class="main-login-form">
+				<div class="login-group">
+      <a href="/new" class="btn btn-primary" id="new">New Game</a><br><br>
+      <a href="/join" class="btn btn-primary" id="new">Join Game</a><br><br>
+      <a href="/rejoin" class="btn btn-primary" id="new">Return to Game</a><br><br>
+    </div>
+      </div>
+    </form>
+    </div>
+<!-- end:Main Form -->
+</div>
+</template>
+<template name="joingame">
+  <div class="text-center" style="padding:50px 0">
+	<div class="logo">Join Game</div>
+  <div class="login-form-1">
+      <div class="login-form-main-message"></div>
+      <div class="main-login-form">
+        <div class="login-group">
+          <div class="form-group">
+            <label for="game_code" class="sr-only">Join Game</label>
+            <input type="text" class="form-control" id="game_code" placeholder="Game Code">
+          </div>
+        </div>
+        <button class="login-button" id="JOIN"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="etc-login-form">
+        <p>Enter the Game Code provided by the creator of the game.<br><br></p>
+      </div>
+  </div>
+</div>
+</template>
+<template name="rejoingame">
+  <button id="new">New Game</button>
+</template>
+
+<template name="newuser">
+  <div class="text-center" style="padding:50px 0">
+	<div class="logo">Name & PIN</div>
+	<!-- Main Form -->
+	<div class="login-form-1">
+		<form id="login-form" class="text-left">
+			<div class="login-form-main-message"></div>
+			<div class="main-login-form">
+				<div class="login-group">
+					<div class="form-group">
+						<label for="lg_username" class="sr-only">Name/Alias</label>
+						<input type="text" class="form-control" id="lg_username" placeholder="Name/Alias">
+					</div>
+					<div class="form-group">
+						<label for="lg_password" class="sr-only">PIN</label>
+						<input type="password" class="form-control" id="PIN" placeholder="PIN">
+					</div>
+          <div class="form-group">
+						<label for="lg_password" class="sr-only">Re-enter PIN</label>
+						<input type="password" class="form-control" id="REPIN" placeholder="Re-Enter PIN">
+					</div>
+				</div>
+				<button class="login-button" id="NEW"><i class="fa fa-chevron-right"></i></button>
+			</div>
+			<div class="etc-login-form">
+				<p>Establishing Name/Alias & PIN allows you to return to the game if you were to get disconnected (as long as you also have the game code).<br><br></p>
+			</div>
+		</form>
+	</div>
+	<!-- end:Main Form -->
+</div>
+</template>

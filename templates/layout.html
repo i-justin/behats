@@ -1,0 +1,31 @@
+<template name="layout">
+		<header>
+			<!-- All the files that are required -->
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+			<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+			<link href='/behats.css' rel='stylesheet' type='text/css'>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	    <div class="container">
+
+		</div>
+	</header><br><br><br>
+	    {{>yield}}
+			<script>
+			$(document).keydown( function(event) {
+      if (event.which === 13) {
+          event.preventDefault();
+      }
+      });
+			</script>
+</template>
+<template name="notFound">
+<div class="center">
+	<h1>Nothing here</h1><br>
+	<h2>You hit a page which doesn't exist!</h2>
+</div>
+</template>
+<template name="loading">
+	<div class="center">
+	<h1>Loading</h1>		</div>
+</template>

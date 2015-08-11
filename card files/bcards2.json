@@ -1,0 +1,27 @@
+bcards.insert({"text":"That's right, I killed [BLANK]. How, you ask? [BLANK]."});
+bcards.insert({"text":"And the Academy Award for [BLANK] goes to [BLANK]."});
+bcards.insert({"text":"For my next trick, I will pull [BLANK] out of [BLANK]."});
+bcards.insert({"text":"In his new summer comedy, Rob Schneider is [BLANK] trapped in the body of [BLANK]."});
+bcards.insert({"text":"When I was tripping on acid, [BLANK] turned into [BLANK]."});
+bcards.insert({"text":"[BLANK] is a slippery slope that leads to [BLANK]."});
+bcards.insert({"text":"In a world ravaged by [BLANK], our only solace is [BLANK]."});
+bcards.insert({"text":"In M. Night Shyamalan's new movie, Bruce Willis discovers that [BLANK] had really been [BLANK] all along."});
+bcards.insert({"text":"I never truly understood [BLANK] until I encountered [BLANK]."});
+bcards.insert({"text":"Rumor has it that Vladimir Putin's favorite dish is [BLANK] stuffed with [BLANK]."});
+bcards.insert({"text":"Lifetime® presents [BLANK], the story of [BLANK]."});
+bcards.insert({"text":"What's the next superhero/sidekick duo?
+"});
+
+
+lpchoices.insert({"value": 10, "text": "I just did"});
+lpchoices.insert({"value": 20, "text": "Less than 10 minutes ago"});
+lpchoices.insert({"value": 30, "text": "Less than an hour ago"});
+lpchoices.insert({"value": 40, "text": "Less than 2 hours ago"});
+lpchoices.insert({"value": 50, "text": "Within the past 6 hours"});
+lpchoices.insert({"value": 60, "text": "Within the past 12 hours"});
+lpchoices.insert({"value": 70, "text": "Today"});
+lpchoices.insert({"value": 80, "text": "Yesterday"});
+lpchoices.insert({"value": 90, "text": "A few days ago"});
+lpchoices.insert({"value": 100, "text": "Last week"});
+lpchoices.insert({"value": 1000, "text": "I'm doing it right now"});
+lpchoices.insert({"value": 2000, "text": "None of your business"});

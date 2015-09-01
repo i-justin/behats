@@ -50,7 +50,9 @@ newCode= function() {
 
 set_game_user_status= function(game_id, user_id, status) {
   uuid='users.'+user_id;
-  games.update({_id:game_id}, {$set:{uuid:status}});
+  hsh={};
+  hsh[uuid]=status;
+  games.update({_id:game_id}, {$set:hsh});
 }
 
 newGame= function (leaderid) {
@@ -65,23 +67,19 @@ newGame= function (leaderid) {
   game=games.insert({"black":black, "white":white, "leader_id":leaderid,"game_code":newCode(),"leader_id":leaderid,"code":code});
   set_game_user_status(game._id, leaderid,'A');
   console.log('GC');
-
-  //return game;
   return games.findOne({"_id":game});
 }
 
-joinGame=function(values) {
-   uid=values[0];
-   game_code=values[1];
+joinGame=function(uid,game_code) {
+   game_code=game_code.toUpperCase();
    game=games.findOne({"game_code":game_code});
+   //console.log(game);
    if (game) {
-      user=getUser();
-      users.update()
-      if (user.game_id) {
-        set_game_user_status(game_id, user._id,'I')
+      if (game._id) {
+        set_game_user_status(game._id, uid,'I')
       }
-      users.update({_id:user._id},{$set:{game_id:game._id}});
-      set_game_user_status(game._id, user._id,'A');
+      users.update({_id:uid},{$set:{game_id:game._id}});
+      set_game_user_status(game._id, uid,'A');
       return game;
    }
 }
@@ -104,4 +102,34 @@ rejoinGame=function(values) {
        }
      }
   }
+}
+svrgetUsers = function(game_id) {
+      console.log('GU');
+      game=getGame(game_id);
+      started=false;
+      if (gameStatus(game_id)!='NOT_STARTED') {
+        started=true;
+      }
+      usrs=users.find({"game_id": game_id}).fetch();
+      if (usrs) {
+          uarr=[]
+          for (each in usrs)  {
+             u=usrs[each];
+             if (u.name) {
+               uhash={"name": u.name};
+               if (started) {
+                 uhash["score"]=u.score;
+               }
+               else {
+                 lpc=lpchoices.findOne({"value": Number(u.lp)});
+                 if (lpc) {
+                     uhash["lp"]=lpc.text;
+                 }
+               }
+               uarr.push(uhash);
+             }
+          }
+          return uarr;
+      }
+
 }

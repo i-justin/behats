@@ -26,14 +26,19 @@ body {
   padding: 10px;
   font-family: 'Varela Round';
 }
+
 /*=== 2. Anchor Link ===*/
 a {
   color: #aaaaaa;
   transition: all ease-in-out 200ms;
+  font-size: 14px;
 }
 a:hover {
   color: #333333;
   text-decoration: none;
+}
+a#what {
+  font-size: 24px;
 }
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
@@ -171,6 +176,16 @@ label.form-invalid:after {
 .login-form-main-message.error {
   border-left-color: #e74c3c;
 }
+
+* th {
+  padding-left: 10px;
+  color: black;
+}
+
+ td {
+  padding-left: 10px;
+  color: black;
+}
 /*=== 8. Custom Checkbox & Radio ===*/
 /* Base for label styling */
 [type="checkbox"]:not(:checked),
@@ -288,4 +303,10 @@ label:hover:before {
 }
 .btn-primary.raised {
     border-radius: 24px;
+}
+.body-group {
+  background: #ffffff;
+  color: #999999;
+  border-radius: 8px;
+  padding: 10px 20px 10px 10px;
 }

@@ -6,9 +6,15 @@ Meteor.startup(function () {
         return newGame(leaderid);
       },
       joinGame: function(uid, game_code) {
+        console.log(game_code);
         return joinGame(uid, game_code);
+      },
+      getUsers: function(game_id) {
+        return svrgetUsers(game_id);
       }
+
     }
-  )
+  );
+
 
 });

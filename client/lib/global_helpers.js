@@ -6,10 +6,10 @@ Template.registerHelper("game_code", function () {
 });
 
 Template.registerHelper("lpchoices", function (selected) {
-  options= lpchoices.find({sort:{value:1}}).fetch();
+  options= lpchoices.find({},{sort:{"value":1}}).fetch();
   retstr='<option></option> ';
   for (each in options) {
-     retstr=retstr+"<option";
+     retstr=retstr+"<option value='"+options[each].value+"' '";
      if (options[each].text==selected) {
        retstr=retstr+" selected";
      }
@@ -17,3 +17,12 @@ Template.registerHelper("lpchoices", function (selected) {
   }
   return new Handlebars.SafeString(retstr);
 })
+
+Template.registerHelper("getting_started", function(argument){
+  if (gameStatus()=='NOT_STARTED') {
+    return true;
+  }
+  else {
+    return false;
+  }
+});

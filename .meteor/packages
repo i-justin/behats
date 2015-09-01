@@ -5,8 +5,9 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 twbs:bootstrap
 iron:router
 u2622:persistent-session
+juliancwirko:s-alert
+juliancwirko:s-alert-scale

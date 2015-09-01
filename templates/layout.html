@@ -10,6 +10,8 @@
 
 		</div>
 	</header><br><br><br>
+	{{#if getting_started }}{{>show_code}}
+	{{/if}}
 	    {{>yield}}
 			<script>
 			$(document).keydown( function(event) {
@@ -18,6 +20,11 @@
       }
       });
 			</script>
+</template>
+<template name="show_code">
+	<div class="text-center">
+	<h3>  Your Game Code is: <strong>{{game_code}}</strong></h3>(Share this with those who you want to join you.)
+	</div>
 </template>
 <template name="notFound">
 <div class="center">

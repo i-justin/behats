@@ -5,31 +5,38 @@ Router.configure ({
 });
 
 
-startGameNext = function() {
-  return null;
+gameNext = function() {
+	console.log('gn');
+  if (Session.get('game_id') && !Session.get("username")) {
+		  return 'newuser';
+	}
+	if (!Session.get("LP")) {
+		   return 'lp';
+	}
+	return 'default';
 }
 
 Router.map(function() {
 	this.route('default', { path:'/', template: 'default'});
-  this.route('new', { path:'/new', template: 'newuser'});
-  this.route('join', { path:'/join', template: 'joingame'});
+  this.route('new', function() {
+			if (!Session.get("game_id")) {
+			   startGame();
+			}
+			this.render('newuser');
+	});
+  this.route('join', function() {
+		if (Session.get("game_id")) {
+			console.log('jredir');
+			gn=gameNext();
+			console.log("gn:" + gn);
+			this.render(gn);
+		} else {
+		this.render('joingame');
+	  }
+	});
   this.route('rejoin', { path:'/rejoin', template: 'rejoingame'});
 	this.route('next',
 			 function() {
-					 stext=Session.get('searchtxt');
-					 res=doSearch(stext);
-					 if (res.result=='both') {
-							this.render('search');
-					 }
-					if (res.result=='niether') {
-							this.render('nothing_found');
-					}
-					 if (res.result=='asset_single') {
-							Router.go('/asset/'+res.id);
-					 }
-					if (res.result=='room_single') {
-							Router.go('/room/'+res.id);
-					}
-
+							this.render(gameNext());
 			 });
 });

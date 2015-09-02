@@ -64,7 +64,7 @@ newGame= function (leaderid) {
     code=newCode();
     exists=games.findOne({"code":code});
   }
-  game=games.insert({"black":black, "white":white, "leader_id":leaderid,"game_code":newCode(),"leader_id":leaderid,"code":code});
+  game=games.insert({"black":black, "white":white, "leader_id":leaderid,"game_code":newCode(),"leader_id":leaderid,"code":code,"active": 'Y'});
   set_game_user_status(game._id, leaderid,'A');
   console.log('GC');
   return games.findOne({"_id":game});
@@ -78,31 +78,24 @@ joinGame=function(uid,game_code) {
       if (game._id) {
         set_game_user_status(game._id, uid,'I')
       }
-      users.update({_id:uid},{$set:{game_id:game._id}});
+      users.update({_id:uid},{$set:{game_id:game._id, status:"A"}});
       set_game_user_status(game._id, uid,'A');
       return game;
    }
 }
 
-rejoinGame=function(values) {
-  game_code=values[0];
-  name=values[1];
-  pin=values[2];
-  game=games.findOne({"game_code":game_code});
-  if (game.users) {
-     for (each in game.users) {
-       user=users.findOne(game.users.each);
-       if (user) {
-         if (user.name==name) {
-             if (!user.pin || user.pin==pin ) {
-               Session.set("UID",user._id);
-               return game;
-             }
-         }
-       }
-     }
+checkLogin=function(game_code, name,pin) {
+  gc=game_code.toUpperCase();
+  game=games.findOne({'game_code':gc});
+  if (game) {
+      user=users.findOne({"name": name,"pin":pin, "game_id":game._id });
+      if (user) {
+         return [user._id,game._id];
+      }
   }
 }
+
+
 svrgetUsers = function(game_id) {
       console.log('GU');
       game=getGame(game_id);

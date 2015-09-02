@@ -45,7 +45,26 @@
 </div>
 </template>
 <template name="rejoingame">
-  <button id="new">New Game</button>
+  <div class="text-center" style="padding:50px 0">
+	<div class="logo">Re-Enter Game</div>
+  <div class="login-form-1">
+      <div class="login-form-main-message"></div>
+      <div class="main-login-form">
+        <div class="login-group">
+          <div class="form-group">
+            <label for="game_code" class="sr-only">Re-Enter Game</label>
+            <input type="text" class="form-control" id="game_code" placeholder="Game Code">
+            <input type="text" class="form-control" id="lg_username" placeholder="Name/Alias">
+            <input type="text" class="form-control" id="lg_password" placeholder="PIN">
+          </div>
+        </div>
+        <button class="login-button" id="JOIN"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="etc-login-form">
+        <p>Please re-enter the Name/Alias & PIN used when you initially joined/created the game.<br><br></p>
+      </div>
+  </div>
+</div>
 </template>
 
 <template name="newuser">

@@ -1,10 +1,9 @@
-Tracker.autorun(function () {
-    Meteor.subscribe("thePlayers", Session.get('game_id'));
-});
+
 
 Tracker.autorun(function () {
     console.log('GOT GAME_ID');
-    Meteor.subscribe("theGame", Session.get('game_id'));
+    Meteor.subscribe("theGame", Session.get('game_id'), Session.get('UID'));
+    Meteor.subscribe("thePlayers", Session.get('game_id'));
 });
 
 Tracker.autorun(function () {

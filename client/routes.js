@@ -7,10 +7,10 @@ Router.configure ({
 
 gameNext = function() {
 	console.log('gn');
-  if (Session.get('game_id') && !Session.get("username")) {
+  if (Session.get('game_id') && !getUser().name) {
 		  return 'newuser';
 	}
-	if (!Session.get("LP")) {
+	if (!getUser().lp) {
 		   return 'lp';
 	}
 	return 'default';
@@ -26,7 +26,6 @@ Router.map(function() {
 	});
   this.route('join', function() {
 		if (Session.get("game_id")) {
-			console.log('jredir');
 			gn=gameNext();
 			console.log("gn:" + gn);
 			this.render(gn);
@@ -34,7 +33,15 @@ Router.map(function() {
 		this.render('joingame');
 	  }
 	});
-  this.route('rejoin', { path:'/rejoin', template: 'rejoingame'});
+  this.route('rejoin', function() {
+		if (Session.get("game_id")) {
+			gn=gameNext();
+
+			this.render(gn);
+		}
+		else {
+		this.render('rejoingame');}
+	});
 	this.route('next',
 			 function() {
 							this.render(gameNext());

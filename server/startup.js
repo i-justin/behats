@@ -11,6 +11,10 @@ Meteor.startup(function () {
       },
       getUsers: function(game_id) {
         return svrgetUsers(game_id);
+      },
+      getUserIDFromlogin: function(game_code, user, pin) {
+        console.log('guidfl');
+        return checkLogin(game_code, user, pin)
       }
 
     }

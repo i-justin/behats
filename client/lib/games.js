@@ -66,17 +66,16 @@ Template.lp.events( {
 
 Template.joingame.events({
   'click #JOIN' : function(e){
-    console.log('join');
     console.log($('#game_code')[0].value);
     gc=$('#game_code')[0].value.toUpperCase();
-    joinGame($('#game_code')[0].value);    
+    joinGame($('#game_code')[0].value);
   }
 });
 
 Template.rejoingame.events({
-  'click #join' : function(e){
-    console.log('join');
-    game=rejoinGame($('#GAME_CODE').value, $('#USER').value, $('#PIN').value);
+  'click #JOIN' : function(e){
+    Session.set("game_id",null);
+    game=rejoinGame($('#game_code')[0].value, $('#lg_username')[0].value, $('#lg_password')[0].value);
   }
 });
 
@@ -88,7 +87,7 @@ sessionGame = function() {
 }
 
 needsGame = function() {
-  if (Session.get("game_code")) {
+  if (getGame()) {
      return false;
   }
   else {return true;}

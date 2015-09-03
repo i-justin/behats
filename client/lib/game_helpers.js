@@ -43,5 +43,4 @@ Template.preStart.helpers({
       }
     }
   }
-
 });

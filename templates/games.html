@@ -133,8 +133,8 @@
       {{/each}}
       {{/with}}
     </table>
-  </div>{{#if showStart}}<br><div class="body-group">You may start the game at any time.  However, only those who are list above will play the first round.</div>
-  <a href="/start" class="btn btn-primary" id="start">Start Game</a><br><br>{{/if}}
+  </div><br>{{#if showStart}}<div class="body-group">You may start the game at any time.  However, only those who are list above will play the first round.</div>
+  <a href="/start" class="btn btn-primary" id="start">Start Game</a><br><br>{{else}}<div class="body-group">Waiting for more people to join...</div>{{/if}}
 </div>
 </div>
 

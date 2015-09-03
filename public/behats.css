@@ -33,6 +33,7 @@ a {
   transition: all ease-in-out 200ms;
   font-size: 14px;
 }
+
 a:hover {
   color: #333333;
   text-decoration: none;
@@ -185,6 +186,7 @@ label.form-invalid:after {
  td {
   padding-left: 10px;
   color: black;
+  text-align: left;
 }
 /*=== 8. Custom Checkbox & Radio ===*/
 /* Base for label styling */

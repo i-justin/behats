@@ -19,7 +19,7 @@ Template.registerHelper("lpchoices", function (selected) {
 })
 
 Template.registerHelper("getting_started", function(argument){
-  if (gameStatus()=='NOT_STARTED' && Session.get("game_id")) {
+  if (gameStatus()=='New' && Session.get("game_id")) {
     return true;
   }
   else {

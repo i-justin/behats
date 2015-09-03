@@ -20,7 +20,7 @@ Router.map(function() {
 	this.route('default', { path:'/', template: 'default'});
   this.route('new', function() {
 			if (!Session.get("game_id")) {
-			   startGame();
+			   createGame();
 			}
 			this.render('newuser');
 	});
@@ -46,4 +46,10 @@ Router.map(function() {
 			 function() {
 							this.render(gameNext());
 			 });
+	this.route('start',
+	    function() {
+				  console.log('start');
+				  startGame();
+					this.render('gameflow');
+			});
 });

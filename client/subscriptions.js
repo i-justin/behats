@@ -10,6 +10,12 @@ Tracker.autorun(function () {
     Meteor.subscribe("player", Session.get('UID'));
 });
 
+
 Meteor.subscribe('lpChoices');
 
 Meteor.subscribe('euphemisms');
+
+Tracker.autorun(function () {
+    Meteor.subscribe('blackCard', Session.get('blackCard'));
+
+});

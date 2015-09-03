@@ -1,4 +1,5 @@
 updatePointers=function(game) {
+
   games.update(game._id, {$set:{pointers:game.pointers}});
 }
 
@@ -23,7 +24,6 @@ nextCard=function(game, cardType) {
 
 dealCards=function(game, user) {
   cards=[];
-  console.log('DC for: '+user.name);
   if (user.cards) {
     cards=user.cards;
   }
@@ -35,28 +35,33 @@ dealCards=function(game, user) {
 
 // Add player's game play order
 
-setUserOrder= function (game, user) {
-  game.pointers.playorder=game.pointers.playorder++;
-  updatePointers(game);
-  users.update(user._id, {$set:{'order':game.pointers.playorder}});
+setUserOrder= function (user, ptr) {
+  users.update(user._id, {$set:{'order':ptr}});
 }
 
 startGame=function(game) {
-   if (game.status='New') {
+   if (game.status=='New') {
         ulist=users.find({status:'A',name: {$exists:true}},{sort: {lp:1}}).fetch();
         for (each in ulist ) {
-          setUserOrder(game, ulist[each]);
+          setUserOrder(game, ulist[each],each);
           users.update(ulist[each]._id,{$set: {game_status:'A'}});
+          game.pointers.playorder=Number(each);
         }
         games.update(game._id,{$set:{status:'STARTED'}});
+        updatePointers(game);
    }
    startRound(game);
+}
+
+getCzar=function(game) {
+     czar=users.findOne({game_id:game._id, order:game.pointers.player_idx});
+     return czar._id;
 }
 
 startRound=function(game) {
    piset=false;   //player index set
    firstpi=null;  //first player pointer (used when it's time to start back at the top of the order)
-   ulist=users.find({status:'A',name: {$exists:true}},{sort: {order:1}}).fetch();
+   ulist=users.find({game_id:game._id, status:'A',name: {$exists:true}},{sort: {order:1}}).fetch();
    for (each in ulist ) {
       if (!ulist[each].game_status || ulist[each.game_status]!='A') {
            users.update(ulist[each]._id,{$set: {game_status:'A'}});
@@ -69,11 +74,13 @@ startRound=function(game) {
           piset=true;
           game.pointers.player_idx=ulist[each].order;
       }
+
    }
    if (!piset) {
      game.pointers.player_idx=firstpi;
    }
    game.pointers.black=nextPointer(game.pointers.black, game.black);
    updatePointers(game);
-   games.update(game._id,{$set:{'played_cards':[]}});
+   czar=getCzar(game);
+   games.update(game._id,{$set:{'played_cards':[], 'czar':czar}});
 }

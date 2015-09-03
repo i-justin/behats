@@ -1,7 +1,19 @@
 <template name="gameflow">
   <div class="text-center" style="padding:10px; ">
-  <div class="body-group">
-      This is where the fun begins...
+  <div class="title ">
+    {{cardCzar}}
   </div>
+  {{# if isCzar}}
+  (Waiting for submissions)<br>
+  <div class="blackCard">
+    <div class="blackCardTxt">
+      {{blackCard}}
+    </div>
+  </div>
+  {{else}}
+  <div class="blackCardShort">
+      {{blackCard}}
+  </div>
+  {{/if}}
 </div>
 </template>

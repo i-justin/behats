@@ -26,3 +26,12 @@ Template.registerHelper("getting_started", function(argument){
     return false;
   }
 });
+
+Template.registerHelper("game_active", function(argument){
+  if (gameStatus()!='New' && Session.get("game_id")) {
+    return true;
+  }
+  else {
+    return false;
+  }
+});

@@ -10,8 +10,8 @@
 
 		</div>
 	</header><br><br><br>
-	{{#if getting_started }}{{>show_code}}
-	{{/if}}
+	{{#if getting_started }}{{>show_code}}	{{/if}}
+		{{#if game_active }}{{>show_running_code}}	{{/if}}
 	    {{>yield}}
 			{{>monitor}}
 			<script>
@@ -27,6 +27,13 @@
 	<h3>  Your Game Code is: <strong>{{game_code}}</strong></h3>(Share this with those who you want to join you.)
 	</div>
 </template>
+<template name="show_running_code">
+	<div class="text-center">
+	<h4> Game Code is: <strong>{{game_code}}</strong></h4>
+	</div>
+</template>
+
+
 <template name="notFound">
 <div class="center">
 	<h1>Nothing here</h1><br>

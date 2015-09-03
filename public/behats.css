@@ -34,6 +34,12 @@ a {
   font-size: 14px;
 }
 
+.title {
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
 a:hover {
   color: #333333;
   text-decoration: none;
@@ -311,4 +317,32 @@ label:hover:before {
   color: #999999;
   border-radius: 8px;
   padding: 10px 20px 10px 10px;
+}
+.blackCard {
+  max-width: 300px;
+  min-height: 300px;
+  padding: 10px;
+  padding-top: 50px;
+  border-radius: 10px;
+  background-color:black;
+  color:white;
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+}
+.blackCardTxt {
+  vertical-align: middle;
+  height:100%;
+}
+
+.blackCardShort {
+  max-width: 300px;
+  min-height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color:black;
+  color:white;
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
 }

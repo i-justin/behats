@@ -13,6 +13,9 @@ gameNext = function() {
 	if (getUser() && !getUser().lp) {
 		   return 'lp';
 	}
+	if (getGame() && getGame().status!="New") {
+		   return 'gameflow';
+	}
 	return 'default';
 }
 

@@ -84,7 +84,7 @@ joinGame=function(uid,game_code) {
    }
 }
 
-checkLogin=function(game_code, name,pin) {
+reenterGame=function(game_code, name,pin) {
   gc=game_code.toUpperCase();
   game=games.findOne({'game_code':gc});
   if (game) {
@@ -94,36 +94,4 @@ checkLogin=function(game_code, name,pin) {
          return [user._id,game._id];
       }
   }
-}
-
-
-svrgetUsers = function(game_id) {
-      console.log('GU');
-      game=getGame(game_id);
-      started=false;
-      if (gameStatus(game_id)!='NOT_STARTED') {
-        started=true;
-      }
-      usrs=users.find({"game_id": game_id}).fetch();
-      if (usrs) {
-          uarr=[]
-          for (each in usrs)  {
-             u=usrs[each];
-             if (u.name) {
-               uhash={"name": u.name};
-               if (started) {
-                 uhash["score"]=u.score;
-               }
-               else {
-                 lpc=lpchoices.findOne({"value": Number(u.lp)});
-                 if (lpc) {
-                     uhash["lp"]=lpc.text;
-                 }
-               }
-               uarr.push(uhash);
-             }
-          }
-          return uarr;
-      }
-
 }

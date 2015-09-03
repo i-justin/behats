@@ -9,12 +9,9 @@ Meteor.startup(function () {
         console.log(game_code);
         return joinGame(uid, game_code);
       },
-      getUsers: function(game_id) {
-        return svrgetUsers(game_id);
-      },
-      getUserIDFromlogin: function(game_code, user, pin) {
+      reenterGame: function(game_code, user, pin) {
         console.log('guidfl');
-        return checkLogin(game_code, user, pin)
+        return reenterGame(game_code, user, pin)
       }
 
     }

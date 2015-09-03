@@ -20,5 +20,7 @@ Meteor.startup(function () {
     }
   );
 
+  Meteor.setInterval( idleMonitor,30000);
+
 
 });

@@ -13,6 +13,7 @@
 	{{#if getting_started }}{{>show_code}}
 	{{/if}}
 	    {{>yield}}
+			{{>monitor}}
 			<script>
 			$(document).keydown( function(event) {
       if (event.which === 13) {
@@ -35,4 +36,7 @@
 <template name="loading">
 	<div class="center">
 	<h1>Loading</h1>		</div>
+</template>
+<template name="monitor">
+	{{ucheck}}
 </template>

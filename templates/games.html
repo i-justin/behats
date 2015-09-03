@@ -7,7 +7,7 @@
 </template>
 <template name="need_game">
   <div class="text-center" style="padding:50px 0">
-	<div class="logo">BEHATS</div>
+	<div class="logo">BEhaTs</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
 		<form id="login-form" class="text-left">
@@ -133,7 +133,8 @@
       {{/each}}
       {{/with}}
     </table>
-  </div>
+  </div>{{#if gameReady}}<br><div class="body-group">You may start the game at any time.  However, only those who are list above will play the first round.</div>
+  <a href="/start" class="btn btn-primary" id="new">Start Game</a><br><br>{{/if}}
 </div>
 </div>
 

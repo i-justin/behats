@@ -1,5 +1,5 @@
 Meteor.publish('thePlayers', function(game_id){
-    return users.find({"game_id":game_id, status:'A'},{fields:{name:1, lp:1}});
+    return users.find({"game_id":game_id, status:'A', name: {$exists:true}},{fields:{name:1, lp:1}});
 });
 
 Meteor.publish('theGame', function(game_id, uid){

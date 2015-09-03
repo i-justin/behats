@@ -115,6 +115,9 @@ Template.users.helpers({
   lptext: function (lp) {
     console.log('lp:'+lp);
     return lpText(lp);
+  },
+  gameReady: function() {
+    getIsReadyToStart()
   }
 
 });

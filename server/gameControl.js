@@ -90,6 +90,7 @@ checkLogin=function(game_code, name,pin) {
   if (game) {
       user=users.findOne({"name": name,"pin":pin, "game_id":game._id });
       if (user) {
+         users.update(user._id,{$set: {status:'A'}});
          return [user._id,game._id];
       }
   }

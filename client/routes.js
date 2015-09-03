@@ -7,10 +7,10 @@ Router.configure ({
 
 gameNext = function() {
 	console.log('gn');
-  if (Session.get('game_id') && !getUser().name) {
+  if (Session.get('game_id') && getUser() && !getUser().name) {
 		  return 'newuser';
 	}
-	if (!getUser().lp) {
+	if (getUser() && !getUser().lp) {
 		   return 'lp';
 	}
 	return 'default';

@@ -6,12 +6,14 @@ Meteor.startup(function () {
         return newGame(leaderid);
       },
       joinGame: function(uid, game_code) {
-        console.log(game_code);
         return joinGame(uid, game_code);
       },
       reenterGame: function(game_code, user, pin) {
-        console.log('guidfl');
         return reenterGame(game_code, user, pin)
+      },
+      startGame: function(game_id) {
+        game=games.findOne(game_id);
+        startGame(game);
       }
 
     }

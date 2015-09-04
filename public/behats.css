@@ -312,6 +312,25 @@ label:hover:before {
 .btn-primary.raised {
     border-radius: 24px;
 }
+.btn-submit {
+   margin-top: 10px;
+   background-color: #009933;
+   width:300px;
+   color: white;
+   font-size: 20px;
+}
+.btn-submit:hover {
+   color:black;
+}
+.btn_disable {
+   background-color: #808080;
+   text:white;
+}
+.btn_disable:hover {
+   background-color: #808080;
+   text:white;
+}
+
 .body-group {
   background: #ffffff;
   color: #999999;
@@ -348,8 +367,9 @@ label:hover:before {
   display: inline-block;
 }
 .whiteCard {
+  margin-top: 5px;
   width: 300px;
-  min-height: 100px;
+  height: 150px;
   padding: 10px;
   padding-top: 50px;
   border-radius: 10px;

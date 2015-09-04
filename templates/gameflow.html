@@ -4,28 +4,40 @@
     {{cardCzar}}
   </div>
   {{# if isCzar}}
-  (Waiting for submissions from {{waiting_count}} players)<br>
-  <div class="blackCard">
-    <div class="blackCardTxt">
-      {{blackCard}}
+    {{#if waiting_count}}
+    (Waiting for submissions from {{waiting_count}} players)<br>
+    <div class="blackCard">
+      <div class="blackCardTxt">
+        {{blackCard}}
+      </div>
     </div>
-  </div>
+    {{/if}}
+
   {{else}}
   <div class="blackCardShort">
       {{blackCard}}
   </div>
-  {{/if}}<br><br>{{>whitecard number=1}}
+  {{>whitecard number=1}}
   {{# if is2Cards}}
      {{>whitecard number=2}}
+  {{/if}}
+  {{#if cards_duplicate}}
+    <a href="#" class="btn btn_disable btn-submit" id="submit_canceled">Submit</a><br>(Can't use the same card for both.)
+  {{else}}
+    <a href="#" class="btn btn-submit" id="submit_play">Submit</a>
+  {{/if}}
   {{/if}}
 </div>
 </template>
 <template name="whitecard">
   <div class="main-login-form">
-    <button class="login-button" id="JOIN"><i class="fa fa-chevron-left"></i></button>
+    <button class="login-button" ><i class="fa fa-chevron-left" data-ptr="{{number}}" id="card_prev"></i></button>
     <div class="whiteCard">
        {{cardText number}}<br>
     </div>
-    <button class="login-button" id="JOIN"><i class="fa fa-chevron-right"></i></button>
+    <button class="login-button"><i class="fa fa-chevron-right" data-ptr="{{number}}" id="card_next"></i></button>
   </div>
+</template>
+<template name="show_plays">
+
 </template>

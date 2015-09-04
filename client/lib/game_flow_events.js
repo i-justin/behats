@@ -11,5 +11,25 @@ Template.gameflow.events({
   'click #rejoin' : function(e){
     console.log('rejoin');
     Router.go('/rejoin');
+  },
+  'click #submit_play' : function() {
+    cs=getCardSels();
+    users.update(getUser()._id, {$set:{played_cards:cs}});
+    router.go('/next');
+  }
+});
+
+Template.whitecard.events({
+  'click #card_next' : function(e){
+    cs=getCardSels();
+    cptr=e.target.dataset.ptr-1;
+    cs[cptr]= getNextPtr(cs[cptr], 1);
+    setCardSels(cs);
+  },
+  'click #card_prev' : function(e){
+    cs=getCardSels();
+    cptr=e.target.dataset.ptr-1;
+    cs[cptr]= getNextPtr(cs[cptr], -1);
+    setCardSels(cs);
   }
 });

@@ -43,36 +43,17 @@ Template.gameflow.helpers({
   },
   is2Cards: function() {
       return Session.get('2card');
+  },
+  cards_duplicate: function() {
+    cs=getCardSels();
+    if (cs[0]==cs[1]) {
+      return true;
+    }
   }
 
 
 });
-getCardText = function(cardidx) {
-   user=getUser();
-   if (user) {
-     console.log('cardidx'+cardidx);
-     card_id=user.cards[cardidx];
-     card=wcards.findOne(card_id);
-     return card.text;
-  }
-}
 
-getNextPtr= function(idx) {
-   if (idx>9) {
-     idx=0;
-   }
-   else {
-     idx=idx+1;
-   }
-   return idx;
-}
-getCardSels = function() {
-  cardsels=Session.get("CARDSELS");
-  if (!cardsels) {
-    cardsels=[0,1];
-  }
-  return cardsels;
-}
 
 Template.whitecard.helpers({
   cardText: function(number) {

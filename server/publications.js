@@ -19,7 +19,6 @@ Meteor.publish('euphemisms', function() {
 });
 
 Meteor.publish('blackCard', function(card_id) {
-    console.log('get card:' + card_id);
     if (card_id) {
       console.log('cid:'+card_id);
       return bcards.find(card_id);
@@ -27,5 +26,7 @@ Meteor.publish('blackCard', function(card_id) {
 });
 
 Meteor.publish('whiteCards', function(cards) {
+  if (cards) {
     return wcards.find({_id:{$in:cards}});
+  }
 });

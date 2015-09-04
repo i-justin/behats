@@ -1,3 +1,6 @@
+
+
+
 Template.gameflow.helpers({
   cardCzar: function () {
     game=getGame();
@@ -24,7 +27,13 @@ Template.gameflow.helpers({
   },
   blackCard: function () {
     if (bcards.findOne()) {
-       return bcards.findOne().text.replace('[BLANK]','..........................');
+       Session.set('2card',false);
+       cardtxt=bcards.findOne().text.replace('[BLANK]','..........................');
+       if (cardtxt.indexOf('[BLANK]')>0) {
+         Session.set('2card',true);
+         cardtxt=cardtxt.replace('[BLANK]', '...........................');
+       }
+       return cardtxt;
     }
   },
   waiting_count: function() {
@@ -32,9 +41,43 @@ Template.gameflow.helpers({
      uid=getUid();
      return users.find({game_id:gid, status:'A', game_status:'A',played_cards: {$size:0}, _id:{$ne:uid} }).fetch().length;
   },
-  whiteCard: function() {
-
+  is2Cards: function() {
+      return Session.get('2card');
   }
 
 
 });
+getCardText = function(cardidx) {
+   user=getUser();
+   if (user) {
+     console.log('cardidx'+cardidx);
+     card_id=user.cards[cardidx];
+     card=wcards.findOne(card_id);
+     return card.text;
+  }
+}
+
+getNextPtr= function(idx) {
+   if (idx>9) {
+     idx=0;
+   }
+   else {
+     idx=idx+1;
+   }
+   return idx;
+}
+getCardSels = function() {
+  cardsels=Session.get("CARDSELS");
+  if (!cardsels) {
+    cardsels=[0,1];
+  }
+  return cardsels;
+}
+
+Template.whitecard.helpers({
+  cardText: function(number) {
+    cardsels=getCardSels();
+    cardidx=cardsels[number-1];
+    return getCardText(cardidx);
+  }
+})

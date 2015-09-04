@@ -64,7 +64,7 @@ newGame= function (leaderid) {
     code=newCode();
     exists=games.findOne({"code":code});
   }
-  game=games.insert({"black":black, "white":white, "leader_id":leaderid,"game_code":newCode(),"leader_id":leaderid,"code":code,"status": 'New',pointers:{black:-1,white:-1,player_idx:0,playorder:0}});
+  game=games.insert({"black":black, "white":white, "leader_id":leaderid,"game_code":newCode(),"leader_id":leaderid,"code":code,"status": 'New',pointers:{black:-1,white:0,player_idx:0,playorder:0}});
   set_game_user_status(game._id, leaderid,'A');
   console.log('GC');
   return games.findOne({"_id":game});

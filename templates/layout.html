@@ -7,12 +7,10 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	    <div class="container">
-
 		</div>
-	</header><br><br><br>
+	</header>
 	{{#if getting_started }}{{>show_code}}	{{/if}}
-		{{#if game_active }}{{>show_running_code}}	{{/if}}
-	    {{>yield}}
+			    {{>yield}}
 			{{>monitor}}
 			<script>
 			$(document).keydown( function(event) {
@@ -21,6 +19,7 @@
       }
       });
 			</script>
+			<div class="navbar navbar-fixed-bottom">{{#if game_active }}{{>show_running_code}}	{{/if}}</div>
 </template>
 <template name="show_code">
 	<div class="text-center">

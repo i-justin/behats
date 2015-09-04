@@ -8,8 +8,14 @@ Tracker.autorun(function () {
 
 Tracker.autorun(function () {
     Meteor.subscribe("player", Session.get('UID'));
+    Meteor.subscribe("whiteCards", Session.get('UID'));
 });
 
+Tracker.autorun(function () {
+  if (getUser() && getUser().cards) {
+      Meteor.subscribe("whiteCards", getUser().cards);
+  }
+});
 
 Meteor.subscribe('lpChoices');
 

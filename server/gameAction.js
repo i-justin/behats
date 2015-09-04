@@ -41,9 +41,9 @@ setUserOrder= function (user, ptr) {
 
 startGame=function(game) {
    if (game.status=='New') {
-        ulist=users.find({status:'A',name: {$exists:true}},{sort: {lp:1}}).fetch();
+        ulist=users.find({game_id:game._id,status:'A',name: {$exists:true}},{sort: {lp:1}}).fetch();
         for (each in ulist ) {
-          setUserOrder(game, ulist[each],each);
+          setUserOrder(ulist[each], Number(each));
           users.update(ulist[each]._id,{$set: {game_status:'A'}});
           game.pointers.playorder=Number(each);
         }
@@ -74,7 +74,7 @@ startRound=function(game) {
           piset=true;
           game.pointers.player_idx=ulist[each].order;
       }
-
+      users.update(ulist[each]._id,{$set: {played_cards:[]}});
    }
    if (!piset) {
      game.pointers.player_idx=firstpi;

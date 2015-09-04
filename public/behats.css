@@ -319,7 +319,7 @@ label:hover:before {
   padding: 10px 20px 10px 10px;
 }
 .blackCard {
-  max-width: 300px;
+  width: 300px;
   min-height: 300px;
   padding: 10px;
   padding-top: 50px;
@@ -336,13 +336,13 @@ label:hover:before {
 }
 
 .blackCardShort {
-  max-width: 300px;
+  width: 300px;
   min-height: 100px;
   padding: 10px;
   border-radius: 5px;
   background-color:black;
   color:white;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   display: inline-block;
 }

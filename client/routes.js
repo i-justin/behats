@@ -6,7 +6,6 @@ Router.configure ({
 
 
 gameNext = function() {
-	console.log('gn');
   if (Session.get('game_id') && getUser() && !getUser().name) {
 		  return 'newuser';
 	}
@@ -55,4 +54,5 @@ Router.map(function() {
 				  startGame();
 					this.render('gameflow');
 			});
+	this.route('wait', { path:'/wait', template:'gameflow_wait'});
 });

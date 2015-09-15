@@ -1,4 +1,10 @@
 
+playersWaitingFor = function () {
+  gid=getGid();
+  uid=getUid();
+  return users.find({game_id:gid, status:'A', game_status:'A',played_cards: {$size:0}, _id:{$ne:uid} }).fetch();
+}
+
 
 
 Template.gameflow.helpers({
@@ -37,17 +43,23 @@ Template.gameflow.helpers({
     }
   },
   waiting_count: function() {
-     gid=getGid();
-     uid=getUid();
-     return users.find({game_id:gid, status:'A', game_status:'A',played_cards: {$size:0}, _id:{$ne:uid} }).fetch().length;
+     return playersWaitingFor().length;
+  },
+  readyForCzar: function () {
+     if (playersWaitingFor().length==0) {
+       return true;
+     }
+     return false;
   },
   is2Cards: function() {
       return Session.get('2card');
   },
   cards_duplicate: function() {
-    cs=getCardSels();
-    if (cs[0]==cs[1]) {
-      return true;
+    if (Session.get('2card')) {
+      cs=getCardSels();
+      if (cs[0]==cs[1]) {
+        return true;
+      }
     }
   }
 
@@ -61,4 +73,11 @@ Template.whitecard.helpers({
     cardidx=cardsels[number-1];
     return getCardText(cardidx);
   }
-})
+});
+
+
+Template.gameflow.helpers({
+   waitingOnUsers: function() {
+     return playersWaitingFor();
+   }
+});

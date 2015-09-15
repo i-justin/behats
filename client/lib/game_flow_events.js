@@ -15,7 +15,7 @@ Template.gameflow.events({
   'click #submit_play' : function() {
     cs=getCardSels();
     users.update(getUser()._id, {$set:{played_cards:cs}});
-    router.go('/next');
+    Router.go('/next');
   }
 });
 

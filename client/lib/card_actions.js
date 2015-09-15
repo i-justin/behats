@@ -1,7 +1,6 @@
 getCardText = function(cardidx) {
    user=getUser();
    if (user) {
-     console.log('cardidx'+cardidx);
      card_id=user.cards[cardidx];
      card=wcards.findOne(card_id);
      if (card && card.text) {

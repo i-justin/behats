@@ -35,3 +35,15 @@ Template.registerHelper("game_active", function(argument){
     return false;
   }
 });
+
+Template.registerHelper("blackCard",function () {
+  if (bcards.findOne()) {
+     Session.set('2card',false);
+     cardtxt=bcards.findOne().text.replace('[BLANK]','..........................');
+     if (cardtxt.indexOf('[BLANK]')>0) {
+       Session.set('2card',true);
+       cardtxt=cardtxt.replace('[BLANK]', '...........................');
+     }
+     return cardtxt;
+  }
+});

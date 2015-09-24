@@ -1,32 +1,27 @@
 Template.gameflow.events({
-  'click #new' : function(e){
-    Router.go('new');
-  },
-  'click #join' : function(e){
-    Session.set("game_id",null);
-    Session.set("game_code",null);
-    console.log('join');
-    Router.go('/join');
-  },
-  'click #rejoin' : function(e){
-    console.log('rejoin');
-    Router.go('/rejoin');
-  },
-  'click #submit_play' : function() {
+  'click #sub_play' : function() {
+    console.log('sub');
+    Router.go('/new');
+    console.log('sub');
     cs=getCardSels();
-    users.update(getUser()._id, {$set:{played_cards:cs}});
-    Router.go('/next');
+    user=getUser();
+    submit_cards=[user.cards[cs[0]], user.cards[cs[1]]];
+    users.update(getUser()._id, {$set:{played_cards:submit_cards}});
+    Meteor.defer(function() { Router.go('wait'); })
+//    console.log('going to wait');
+//    Router.go('/new');
+    console.log('wait done.');
   }
 });
 
 Template.whitecard.events({
-  'click #card_next' : function(e){
+  'click .card_next' : function(e){
     cs=getCardSels();
     cptr=e.target.dataset.ptr-1;
     cs[cptr]= getNextPtr(cs[cptr], 1);
     setCardSels(cs);
   },
-  'click #card_prev' : function(e){
+  'click .card_prev' : function(e){
     cs=getCardSels();
     cptr=e.target.dataset.ptr-1;
     cs[cptr]= getNextPtr(cs[cptr], -1);

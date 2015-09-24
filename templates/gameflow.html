@@ -5,12 +5,7 @@
   </div>
   {{# if isCzar}}
     {{#if waiting_count}}
-    (Waiting for submissions from {{waiting_count}} players)<br>
-    <div class="blackCard">
-      <div class="blackCardTxt">
-        {{blackCard}}
-      </div>
-    </div>
+    {{>game_flow_waiting}}
     {{/if}}
   {{else}}
   <div class="blackCardShort">
@@ -23,35 +18,35 @@
   {{#if cards_duplicate}}
     <a href="#" class="btn btn_disable btn-submit" id="submit_canceled">Submit</a><br>(Can't use the same card for both.)
   {{else}}
-    <a href="#" class="btn btn-submit" id="submit_play">Submit</a>
+    <a href="#" class="btn btn-submit" id="sub_play">Submit</a>
   {{/if}}
   {{/if}}
 </div>
 </template>
 <template name="whitecard">
   <div class="main-login-form">
-    <button class="login-button" data-ptr="{{number}}" id="card_prev"><i class="fa fa-chevron-left" ></i></button>
+    <button class="card_prev login-button" data-ptr="{{number}}"><i class="card_prev fa fa-chevron-left"></i></button>
     <div class="whiteCard">
        {{cardText number}}<br>
     </div>
-    <button class="login-button" data-ptr="{{number}}" id="card_next"><i class="fa fa-chevron-right"></i></button>
+    <button class="card_next login-button" data-ptr="{{number}}"><i class="card_prev fa fa-chevron-right"></i></button>
   </div>
 </template>
 <template name="show_plays">
 
 </template>
-<template name="gameflow_wait">
+<template name="game_flow_waiting">
   <div class="text-center" style="padding:10px; ">
-    	<div class="logo">Waiting on these players</div>
+    <div class="blackCardShort">
+      {{blackCard}}
+    </div><br/>
       <div class="login-form-1">
         <div class="body-group">
             <table>
-              <tr><th class="head">Player</th></tr>
-            {{# with waitingOnUsers}}
-            {{#each gameUsers}}
+            <tr><td><div class="logo">Waiting on...</div></td></tr>
+            {{#each waitingOnUsers}}
              <tr><td>{{name}}</td></tr>
             {{/each}}
-            {{/with}}
           </table>
         </div>
       </div>

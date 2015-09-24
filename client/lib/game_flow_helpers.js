@@ -1,35 +1,27 @@
 
 playersWaitingFor = function () {
   gid=getGid();
-  uid=getUid();
+  uid=getGameCzar.uid;
   return users.find({game_id:gid, status:'A', game_status:'A',played_cards: {$size:0}, _id:{$ne:uid} }).fetch();
 }
 
 
-
 Template.gameflow.helpers({
   cardCzar: function () {
-    game=getGame();
-    if (game && game.czar) {
-       Session.set("blackCard", getBlackCard());
-       if (game.czar==getUid()) {
-         return "You are the Card Czar";
-       }
-       else {
-         user=users.findOne(game.czar);
-         if (user) {
-            return user.name+" is the Card Czar."
-         }
-       }
+    gameCzar=getGameCzar();
+    if (gameCzar && gameCzar.uid==getUid()) {
+       return "You are the Card Czar";
+    }
+    else {
+       return gameCzar.name + ' is Card Czar';
     }
   },
   isCzar: function () {
-    game=getGame();
-    if (game && game.czar) {
-       if (game.czar==getUid())  {
-         return true;
-       }
+    gameCzar=getGameCzar();
+    if (gameCzar && gameCzar.uid==getUid()) {
+       return true;
     }
+    return false;
   },
   blackCard: function () {
     if (bcards.findOne()) {
@@ -66,6 +58,12 @@ Template.gameflow.helpers({
 
 });
 
+Template.game_flow_waiting.helpers ({
+  'waitingOnUsers': function() {
+     console.log('wou');
+     return playersWaitingFor();
+  }
+});
 
 Template.whitecard.helpers({
   cardText: function(number) {

@@ -46,6 +46,7 @@ Router.map(function() {
 	});
 	this.route('next',
 			 function() {
+				  console.log('next');
 							this.render(gameNext());
 			 });
 	this.route('start',
@@ -54,5 +55,9 @@ Router.map(function() {
 				  startGame();
 					this.render('gameflow');
 			});
-	this.route('wait', { path:'/wait', template:'gameflow_wait'});
+	this.route('wait',
+					 function() {
+						  console.log('gameflowWait');
+									this.render('game_flow_waiting');
+					 });
 });

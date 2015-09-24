@@ -6,8 +6,9 @@ getCardText = function(cardidx) {
      if (card && card.text) {
        card.text=card.text.replace('&#8482;','&#174;');
      }
-     return new Handlebars.SafeString(card.text);
-
+     if (card) {
+        return new Handlebars.SafeString(card.text);
+     }
   }
 }
 

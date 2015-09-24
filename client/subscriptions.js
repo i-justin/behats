@@ -8,7 +8,7 @@ Tracker.autorun(function () {
 
 Tracker.autorun(function () {
     Meteor.subscribe("player", Session.get('UID'));
-    Meteor.subscribe("whiteCards", Session.get('UID'));
+  //   Meteor.subscribe("whiteCards", Session.get('UID'));
 });
 
 Tracker.autorun(function () {

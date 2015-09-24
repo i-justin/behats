@@ -1,3 +1,6 @@
+
+
+
 Meteor.startup(function () {
   // code to run on server at startup
   Meteor.methods (
@@ -15,7 +18,6 @@ Meteor.startup(function () {
         game=games.findOne(game_id);
         startGame(game);
       }
-
     }
   );
 
